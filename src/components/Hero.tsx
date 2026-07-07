@@ -4,10 +4,12 @@ import { motion } from "framer-motion";
 
 export default function Hero() {
   return (
-    <div
-      className="relative min-h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-cover bg-center px-4 md:px-12 pb-16 md:pb-24 select-none"
-      style={{ backgroundImage: "url('/heroo-bg.png')" }}
-    >
+    <div className="relative min-h-screen w-full flex flex-col justify-center items-center overflow-hidden px-4 md:px-12 pb-16 md:pb-24 select-none">
+      {/* Responsive Background Image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center pointer-events-none z-0 bg-[url('/mobile-hero-bg.png')] md:bg-[url('/heroo-bg.png')]"
+      />
+
       {/* NO BACKGROUND OVERLAY FOR BRIGHT VISIBILITY */}
 
       {/* Bottom Gradient Fade to Match Target Design */}
@@ -17,14 +19,14 @@ export default function Hero() {
       <div className="relative z-20 w-full max-w-7xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
 
         {/* Left Side: Exact Text & Buttons */}
-        <div className="lg:col-span-7 flex flex-col items-start text-left mb-6 lg:mb-0 transform -translate-x-4 lg:-translate-x-12 translate-y-3 lg:translate-y-6">
+        <div className="lg:col-span-7 flex flex-col items-start text-left mb-6 lg:mb-0 transform lg:-translate-x-12 lg:translate-y-6">
 
           {/* Headline Badge (Arial/Sans bold with black outline) */}
           <motion.h3
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ type: "spring", stiffness: 120, damping: 20 }}
-            className="font-sans font-black text-white text-lg sm:text-xl md:text-2xl lg:text-3xl mb-4 badge-outline tracking-wider uppercase whitespace-nowrap"
+            className="font-sans font-black text-white text-sm sm:text-lg md:text-2xl lg:text-3xl mb-4 badge-outline tracking-wider uppercase whitespace-nowrap"
           >
             THE HARDEST MEME ON THE INTERNET
           </motion.h3>
@@ -37,7 +39,7 @@ export default function Hero() {
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ type: "spring", stiffness: 80, damping: 15, delay: 0.1 + idx * 0.1 }}
-                  className="font-numpty font-black text-6xl md:text-8xl xl:text-9xl tracking-tight leading-[0.88] stoney-text"
+                  className="font-numpty font-black text-5xl sm:text-7xl md:text-8xl xl:text-9xl tracking-tight leading-[0.88] stoney-text"
                 >
                   {line}
                 </motion.h1>
@@ -50,7 +52,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.45 }}
-            className="text-white text-base md:text-lg lg:text-xl max-w-xl mb-8 leading-relaxed text-outline-dark font-semibold"
+            className="text-white text-sm sm:text-base md:text-lg lg:text-xl max-w-xl mb-8 leading-relaxed text-outline-dark font-semibold"
           >
             A legendary stone that rolled out of nowhere and became the strongest community on chain.
           </motion.p>
