@@ -16,10 +16,10 @@ export default function Hero() {
       <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-black via-black/40 to-transparent pointer-events-none z-10" />
 
       {/* Hero Layout Grid */}
-      <div className="relative z-20 w-full max-w-7xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+      <div className="relative z-20 w-full max-w-7xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-end pt-20 lg:pt-0">
 
         {/* Left Side: Exact Text & Buttons */}
-        <div className="lg:col-span-7 flex flex-col items-start text-left mb-6 lg:mb-0 transform lg:-translate-x-12 lg:translate-y-6">
+        <div className="lg:col-span-7 flex flex-col items-start text-left mb-6 lg:mb-0 transform translate-y-8 lg:-translate-x-12 lg:translate-y-6">
 
           {/* Headline Badge (Arial/Sans bold with black outline) */}
           <motion.h3

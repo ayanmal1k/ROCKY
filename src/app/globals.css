@@ -16,7 +16,7 @@ body {
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  -webkit-text-stroke: 3.5px #000000;
+  -webkit-text-stroke: 1.2px #000000;
   filter: drop-shadow(0 4px 0px #000000);
 }
 
@@ -72,4 +72,90 @@ body {
   * {
     cursor: none !important;
   }
+}
+
+/* About Section Custom Styles */
+.about-section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.about-bg {
+  position: relative;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.88)), url('/lore-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Spotlight Text Effect */
+.spotlight-text {
+  color: rgba(255, 255, 255, 0.85);
+  display: inline;
+}
+
+@media (pointer: fine) {
+  .spotlight-text {
+    background-image: radial-gradient(circle 320px at var(--mouse-vp-x, -999px) var(--mouse-vp-y, -999px),
+        rgba(255, 255, 255, 0.98) 0%,
+        rgba(255, 255, 255, 0.6) 55%,
+        rgba(255, 255, 255, 0.35) 100%);
+    background-attachment: fixed;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    transition: background-image 0.1s ease;
+  }
+}
+
+/* Spotlight Ambient Overlay */
+.spotlight-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle 400px at var(--mouse-x, -999px) var(--mouse-y, -999px),
+      rgba(255, 255, 255, 0.08) 0%,
+      rgba(255, 255, 255, 0.02) 60%,
+      transparent 100%);
+  z-index: 1;
+  mix-blend-mode: screen;
+}
+
+/* Rocky Image — anchored to bottom of section, 20% cropped */
+.about-rocky-container {
+  position: relative;
+  z-index: 20;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: auto;
+  overflow: hidden;
+  height: 240px;
+}
+
+@media (min-width: 640px) {
+  .about-rocky-container {
+    height: 300px;
+  }
+}
+
+@media (min-width: 768px) {
+  .about-rocky-container {
+    height: 380px;
+  }
+}
+
+.about-rocky-img {
+  width: auto;
+  height: 130%;
+  object-fit: contain;
+  object-position: top center;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), filter 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  filter: brightness(0.65) drop-shadow(0 0 0px rgba(255, 255, 255, 0));
+}
+
+.about-rocky-img:hover {
+  filter: brightness(1.1) drop-shadow(0 0 35px rgba(255, 255, 255, 0.35));
 }
