@@ -52,7 +52,7 @@ const phases: Phase[] = [
     number: 4,
     name: "Diamond",
     gemColor: "#B9F2FF",
-    video: "/diamond.mp4",
+    video: "/diamond.webm",
     points: [
       "Major CEX listing confirmed",
       "Cross-chain bridge deployment",
@@ -120,7 +120,7 @@ export default function Roadmap() {
               const newVideo = videosRef.current[activeIndex];
               if (newVideo) {
                 newVideo.currentTime = 0;
-                newVideo.play().catch(() => {});
+                newVideo.play().catch(() => { });
               }
             }
           },
@@ -131,7 +131,7 @@ export default function Roadmap() {
       const firstVideo = videosRef.current[0];
       if (firstVideo) {
         firstVideo.currentTime = 0;
-        firstVideo.play().catch(() => {});
+        firstVideo.play().catch(() => { });
       }
     }, section);
 
@@ -219,6 +219,8 @@ export default function Roadmap() {
                 }}
                 className="roadmap-video"
                 src={phase.video}
+                autoPlay
+                loop
                 muted
                 playsInline
                 preload="auto"
