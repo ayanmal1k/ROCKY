@@ -28,6 +28,7 @@ body {
   color: #ffffff;
   font-family: var(--font-numpty), sans-serif;
   box-shadow: inset 0 2.5px 0px rgba(255, 255, 255, 0.45), 0 5px 0px #1a1b1e;
+  -webkit-text-stroke: 0.3px #000000;
   text-shadow: 1.5px 1.5px 0px rgba(0, 0, 0, 0.85);
   transition: all 0.1s ease-in-out;
   cursor: pointer;
@@ -44,12 +45,12 @@ body {
 
 /* Black text stroke / thick outline for text readability */
 .text-outline-dark {
-  text-shadow: 
-    -2px -2px 0 #000,  
-     2px -2px 0 #000,
-    -2px  2px 0 #000,
-     2px  2px 0 #000,
-     0px  3px 6px rgba(0, 0, 0, 0.9);
+  text-shadow:
+    -2px -2px 0 #000,
+    2px -2px 0 #000,
+    -2px 2px 0 #000,
+    2px 2px 0 #000,
+    0px 3px 6px rgba(0, 0, 0, 0.9);
 }
 
 .badge-outline {
@@ -63,5 +64,12 @@ body {
     color: #e5e7eb;
     background-image: none;
     -webkit-text-fill-color: initial;
+  }
+}
+
+/* Custom Cursor Hiding for Devices with Mouse Pointer */
+@media (pointer: fine) {
+  * {
+    cursor: none !important;
   }
 }

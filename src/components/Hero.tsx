@@ -17,7 +17,7 @@ export default function Hero() {
       <div className="relative z-20 w-full max-w-7xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
 
         {/* Left Side: Exact Text & Buttons */}
-        <div className="lg:col-span-7 flex flex-col items-start text-left mb-6 lg:mb-0">
+        <div className="lg:col-span-7 flex flex-col items-start text-left mb-6 lg:mb-0 transform -translate-x-4 lg:-translate-x-12 translate-y-3 lg:translate-y-6">
 
           {/* Headline Badge (Arial/Sans bold with black outline) */}
           <motion.h3

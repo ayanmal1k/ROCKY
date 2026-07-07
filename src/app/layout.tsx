@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import CustomCursor from "@/components/CustomCursor";
 
 const numpty = localFont({
   src: "../../public/numpty/Numpty DEMO.otf",
@@ -20,7 +21,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${numpty.variable}`}>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        <CustomCursor />
+        {children}
+      </body>
     </html>
   );
 }
