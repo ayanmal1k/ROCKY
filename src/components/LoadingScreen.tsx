@@ -49,7 +49,7 @@ export default function LoadingScreen() {
             transition={{ delay: 0.2, duration: 0.5 }}
             className="mt-8 font-numpty text-lg sm:text-2xl md:text-3xl tracking-wide text-white uppercase text-outline-dark text-center px-6 max-w-xl"
           >
-            Are you here to meet Rocky?
+            You here to meet Rocky?
           </motion.div>
         </motion.div>
       )}
