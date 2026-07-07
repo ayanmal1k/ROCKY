@@ -84,7 +84,7 @@ body {
 
 .about-bg {
   position: relative;
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.88)), url('/lore-bg.png');
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.65)), url('/lore-bg.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -132,18 +132,18 @@ body {
   justify-content: center;
   margin-top: auto;
   overflow: hidden;
-  height: 240px;
+  height: 180px;
 }
 
 @media (min-width: 640px) {
   .about-rocky-container {
-    height: 300px;
+    height: 220px;
   }
 }
 
 @media (min-width: 768px) {
   .about-rocky-container {
-    height: 380px;
+    height: 280px;
   }
 }
 
@@ -158,4 +158,82 @@ body {
 
 .about-rocky-img:hover {
   filter: brightness(1.1) drop-shadow(0 0 35px rgba(255, 255, 255, 0.35));
+}
+
+/* ===== Googly Eyes ===== */
+.googly-eyes-wrapper {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.googly-eye {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle at 38% 35%, #ffffff 0%, #f0f0f0 60%, #d8d8d8 100%);
+  box-shadow:
+    inset 1px 2px 4px rgba(0, 0, 0, 0.5),
+    0 2px 6px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Eye sizing & positioning — tuned so eyes sit on the stone face */
+.googly-eye--left {
+  width: 36px;
+  height: 36px;
+  top: 22%;
+  left: calc(50% - 30px);
+}
+
+.googly-eye--right {
+  width: 36px;
+  height: 36px;
+  top: 22%;
+  left: calc(50% + 0px);
+}
+
+@media (min-width: 640px) {
+  .googly-eye--left {
+    width: 44px;
+    height: 44px;
+    top: 22%;
+    left: calc(50% - 36px);
+  }
+  .googly-eye--right {
+    width: 44px;
+    height: 44px;
+    top: 22%;
+    left: calc(50% + 0px);
+  }
+}
+
+@media (min-width: 768px) {
+  .googly-eye--left {
+    width: 52px;
+    height: 52px;
+    top: 22%;
+    left: calc(50% - 44px);
+  }
+  .googly-eye--right {
+    width: 52px;
+    height: 52px;
+    top: 22%;
+    left: calc(50% + 0px);
+  }
+}
+
+.googly-pupil {
+  width: 60%;
+  height: 60%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #333 0%, #000 70%);
+  box-shadow:
+    inset -1px -1px 2px rgba(255, 255, 255, 0.15),
+    1px 2px 3px rgba(0, 0, 0, 0.3);
+  transition: transform 0.08s ease-out;
+  will-change: transform;
 }
