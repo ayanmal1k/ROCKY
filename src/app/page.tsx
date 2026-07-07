@@ -2,6 +2,7 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Roadmap from "@/components/Roadmap";
 import LoadingScreen from "@/components/LoadingScreen";
+import MemeGenerator from "@/components/MemeGenerator";
 
 export default function Home() {
   return (
@@ -17,6 +18,8 @@ export default function Home() {
       <About />
       {/* Horizontal scroll roadmap */}
       <Roadmap />
+      {/* Meme Generator */}
+      <MemeGenerator />
     </main>
   );
 }
