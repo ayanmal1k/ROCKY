@@ -1,0 +1,78 @@
+html {
+  height: 100%;
+}
+body {
+  background-color: red;
+  text-align: center;
+  margin: 0px;
+  height: 100%;
+}
+.box {
+  display: inline-block;
+  width: 33%;
+  height: 33%;
+  color: red;
+}
+.box:hover {
+  color: white;
+  border: 1px solid white;
+}
+.eyeCont {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.eye {
+  display:inline-block;
+  border-radius: 50%;
+  /* Eye properties: */
+  height: 121px; width: 121px;
+  background-color: white;
+  box-shadow: inset 1px 3px 5px 2px rgba(0,0,0,0.7);
+}
+.eye:after {
+  content: '';
+  display: block;
+  height: 70%; width: 70%;
+  border-radius: 50%;
+  transform: translate(22%, 22%);
+  background-color: black;
+  transition: 0.5s all;
+  box-shadow: 3px 5px 5px 2px rgba(0,0,0,0.4);
+}
+#b1:hover ~ .eyeCont .eye:after {
+  transform: translate(13%,13%);
+}
+#b2:hover ~ .eyeCont .eye:after {
+  transform: translate(22%,8%);
+}
+#b3:hover ~ .eyeCont .eye:after {
+  transform: translate(33%,13%);
+}
+#b4:hover ~ .eyeCont .eye:after {
+  transform: translate(8%,22%);
+}
+#b5:hover ~ .eyeCont .eye#l:after {
+  transform: translate(36%,22%);
+}
+#b5:hover ~ .eyeCont .eye#r:after {
+  transform: translate(8%,22%);
+}
+#b6:hover ~ .eyeCont .eye:after {
+  transform: translate(36%,22%);
+}
+#b7:hover ~ .eyeCont .eye:after {
+  transform: translate(13%,31%);
+}
+#b8:hover ~ .eyeCont .eye:after {
+  transform: translate(22%,36%);
+}
+#b9:hover ~ .eyeCont .eye:after {
+  transform: translate(31%,31%);
+}
+p.n {
+    font-size: 20px;  
+    font-family: 'Nanum Gothic', serif;
+}

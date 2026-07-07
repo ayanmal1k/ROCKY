@@ -1,26 +1,123 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-bg-dark: #060709;
+  --color-stone-base: #0a0b0d;
+  --color-stone-card: #12141c;
+  --color-stone-border: #1e2230;
+  --color-amber-gold: #e29a27;
+  --color-amber-glow: #ffd074;
+  --color-emerald-accent: #05cd72;
+  
+  --font-sans: var(--font-jakarta), system-ui, sans-serif;
+  --font-display: var(--font-outfit), system-ui, sans-serif;
+  
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-spin-slow: spin 20s linear infinite;
+  --animate-pulse-glow: pulse-glow 3s ease-in-out infinite;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(2deg);
   }
 }
 
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.05);
+  }
+}
+
+:root {
+  --background: #0a0b0d;
+  --foreground: #f3f4f6;
+}
+
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #060709;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e2230;
+  border-radius: 4px;
+  border: 2px solid #060709;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #e29a27;
+}
+
+/* Glassmorphism helpers */
+.glass-panel {
+  background: rgba(18, 20, 28, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(30, 34, 48, 0.5);
+}
+
+.glass-panel-hover {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel-hover:hover {
+  background: rgba(18, 20, 28, 0.85);
+  border-color: rgba(226, 154, 39, 0.4);
+  box-shadow: 0 12px 40px -12px rgba(226, 154, 39, 0.15);
+}
+
+/* Amber Glow effects */
+.glow-text-gold {
+  text-shadow: 0 0 20px rgba(226, 154, 39, 0.4);
+}
+
+.glow-bg-gold {
+  box-shadow: 0 0 40px rgba(226, 154, 39, 0.2);
+}
+
+/* Selection */
+::selection {
+  background: rgba(226, 154, 39, 0.3);
+  color: #ffffff;
+}
+
+/* Lenis CSS integration */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis-scrolling iframe {
+  pointer-events: none;
 }
