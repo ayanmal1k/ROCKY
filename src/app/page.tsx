@@ -1,27 +1,7 @@
-"use client";
-
-import dynamic from "next/dynamic";
-import Hero from "@/components/Hero";
-import SmoothScroll from "@/components/SmoothScroll";
-import BentoGrid from "@/components/BentoGrid";
-import SwapSimulator from "@/components/SwapSimulator";
-import Footer from "@/components/Footer";
-
-// Dynamically import GSAP-reliant components to prevent SSR conflicts
-const ParallaxSection = dynamic(() => import("@/components/ParallaxSection"), {
-  ssr: false,
-});
-
 export default function Home() {
   return (
-    <SmoothScroll>
-      <div className="relative min-h-screen w-full flex flex-col bg-bg-dark text-foreground">
-        <Hero />
-        <ParallaxSection />
-        <BentoGrid />
-        <SwapSimulator />
-        <Footer />
-      </div>
-    </SmoothScroll>
+    <main className="flex min-h-screen flex-col items-center justify-center p-24 bg-black text-white">
+      <h1 className="text-4xl font-bold">Rocky Token</h1>
+    </main>
   );
 }
