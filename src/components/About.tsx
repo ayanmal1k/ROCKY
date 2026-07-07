@@ -27,47 +27,66 @@ export default function About() {
     []
   );
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!sectionRef.current) return;
-    const rect = sectionRef.current.getBoundingClientRect();
+  const updateCoords = useCallback(
+    (clientX: number, clientY: number) => {
+      if (!sectionRef.current) return;
+      const rect = sectionRef.current.getBoundingClientRect();
 
-    const secX = e.clientX - rect.left;
-    const secY = e.clientY - rect.top;
-    const vpX = e.clientX;
-    const vpY = e.clientY;
+      const secX = clientX - rect.left;
+      const secY = clientY - rect.top;
+      const vpX = clientX;
+      const vpY = clientY;
 
-    // Calculate eye positions relative to the rocky container
-    if (rockyContainerRef.current) {
-      const rockyRect = rockyContainerRef.current.getBoundingClientRect();
-      const imgW = rockyRect.width;
-      const imgH = rockyRect.height;
+      // Calculate eye positions relative to the rocky container
+      if (rockyContainerRef.current) {
+        const rockyRect = rockyContainerRef.current.getBoundingClientRect();
+        const imgW = rockyRect.width;
+        const imgH = rockyRect.height;
 
-      // Eye centers relative to the rocky container (tuned for the stone image)
-      // Left eye: ~38% from left, ~30% from top
-      // Right eye: ~62% from left, ~30% from top
-      const leftEyeX = rockyRect.left + imgW * 0.38;
-      const leftEyeY = rockyRect.top + imgH * 0.28;
-      const rightEyeX = rockyRect.left + imgW * 0.62;
-      const rightEyeY = rockyRect.top + imgH * 0.28;
+        // Eye centers relative to the rocky container (tuned for the stone image)
+        const leftEyeX = rockyRect.left + imgW * 0.38;
+        const leftEyeY = rockyRect.top + imgH * 0.28;
+        const rightEyeX = rockyRect.left + imgW * 0.62;
+        const rightEyeY = rockyRect.top + imgH * 0.28;
 
-      setLeftPupil(calcPupilOffset(e.clientX, e.clientY, leftEyeX, leftEyeY));
-      setRightPupil(calcPupilOffset(e.clientX, e.clientY, rightEyeX, rightEyeY));
-    }
-
-    requestAnimationFrame(() => {
-      if (sectionRef.current) {
-        sectionRef.current.style.setProperty("--mouse-x", `${secX}px`);
-        sectionRef.current.style.setProperty("--mouse-y", `${secY}px`);
-        sectionRef.current.style.setProperty("--mouse-vp-x", `${vpX}px`);
-        sectionRef.current.style.setProperty("--mouse-vp-y", `${vpY}px`);
+        setLeftPupil(calcPupilOffset(clientX, clientY, leftEyeX, leftEyeY));
+        setRightPupil(calcPupilOffset(clientX, clientY, rightEyeX, rightEyeY));
       }
-    });
+
+      requestAnimationFrame(() => {
+        if (sectionRef.current) {
+          sectionRef.current.style.setProperty("--mouse-x", `${secX}px`);
+          sectionRef.current.style.setProperty("--mouse-y", `${secY}px`);
+          sectionRef.current.style.setProperty("--mouse-vp-x", `${vpX}px`);
+          sectionRef.current.style.setProperty("--mouse-vp-y", `${vpY}px`);
+        }
+      });
+    },
+    [calcPupilOffset]
+  );
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    updateCoords(e.clientX, e.clientY);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (e.touches && e.touches[0]) {
+      updateCoords(e.touches[0].clientX, e.touches[0].clientY);
+    }
+  };
+
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (e.touches && e.touches[0]) {
+      updateCoords(e.touches[0].clientX, e.touches[0].clientY);
+    }
   };
 
   return (
     <section
       ref={sectionRef}
       onMouseMove={handleMouseMove}
+      onTouchMove={handleTouchMove}
+      onTouchStart={handleTouchStart}
       className="about-section about-bg relative overflow-hidden select-none group"
       id="about"
     >
@@ -99,10 +118,10 @@ export default function About() {
           transition={{ type: "spring", stiffness: 90, damping: 20, delay: 0.15 }}
           className="w-full text-center mb-8"
         >
-          <p className="text-xl sm:text-2xl md:text-3xl font-numpty leading-relaxed spotlight-text">
+          <p className="text-2xl sm:text-3xl md:text-4xl font-numpty leading-relaxed spotlight-text">
             Born from the rugged depths of the blockchain, Rocky is the ultimate testament to endurance, community, and pure stoney determination. In a world full of fleeting dogs, hyperactive frogs, and transient memes that turn to dust overnight, Rocky stands solid—unmoved, unphased, and unbreakable.
           </p>
-          <p className="text-xl sm:text-2xl md:text-3xl font-numpty leading-relaxed spotlight-text mt-6">
+          <p className="text-2xl sm:text-3xl md:text-4xl font-numpty leading-relaxed spotlight-text mt-6">
             This legendary stone rolled out of the digital abyss with no promises and initially no eyes. Yet, the community saw its strength. We gathered around this silent monolith, carving our hopes, our memes, and our collective diamond hands into its surface. Trends fade, but rocks endure forever.
           </p>
         </motion.div>

@@ -4,6 +4,10 @@
   --font-numpty: var(--font-numpty), sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: #000000;
   color: #ffffff;
@@ -74,12 +78,28 @@ body {
   }
 }
 
+/* Hero Pin — fixed so About scrolls over Hero with zero jitter */
+.hero-fixed-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  height: 100vh;
+  overflow: hidden;
+}
+
 /* About Section Custom Styles */
 .about-section {
+  position: relative;
+  z-index: 2;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 32px 32px 0 0;
+  box-shadow: 0 -40px 80px rgba(0, 0, 0, 0.9), 0 -8px 30px rgba(0, 0, 0, 0.7);
+  backface-visibility: hidden;
 }
 
 .about-bg {
@@ -92,22 +112,15 @@ body {
 
 /* Spotlight Text Effect */
 .spotlight-text {
-  color: rgba(255, 255, 255, 0.85);
-  display: inline;
-}
-
-@media (pointer: fine) {
-  .spotlight-text {
-    background-image: radial-gradient(circle 320px at var(--mouse-vp-x, -999px) var(--mouse-vp-y, -999px),
-        rgba(255, 255, 255, 0.98) 0%,
-        rgba(255, 255, 255, 0.6) 55%,
-        rgba(255, 255, 255, 0.35) 100%);
-    background-attachment: fixed;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    transition: background-image 0.1s ease;
-  }
+  background-image: radial-gradient(circle 320px at var(--mouse-vp-x, -999px) var(--mouse-vp-y, -999px),
+      rgba(255, 255, 255, 0.98) 0%,
+      rgba(255, 255, 255, 0.6) 55%,
+      rgba(255, 255, 255, 0.35) 100%);
+  background-attachment: fixed;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  transition: background-image 0.1s ease;
 }
 
 /* Spotlight Ambient Overlay */
@@ -183,46 +196,46 @@ body {
 
 /* Eye sizing & positioning — tuned so eyes sit on the stone face */
 .googly-eye--left {
-  width: 36px;
-  height: 36px;
+  width: 50px;
+  height: 50px;
   top: 22%;
-  left: calc(50% - 30px);
+  left: calc(50% - 60px);
 }
 
 .googly-eye--right {
-  width: 36px;
-  height: 36px;
+  width: 50px;
+  height: 50px;
   top: 22%;
-  left: calc(50% + 0px);
+  left: calc(50% + 16px);
 }
 
 @media (min-width: 640px) {
   .googly-eye--left {
-    width: 44px;
-    height: 44px;
+    width: 60px;
+    height: 60px;
     top: 22%;
-    left: calc(50% - 36px);
+    left: calc(50% - 72px);
   }
   .googly-eye--right {
-    width: 44px;
-    height: 44px;
+    width: 60px;
+    height: 60px;
     top: 22%;
-    left: calc(50% + 0px);
+    left: calc(50% + 18px);
   }
 }
 
 @media (min-width: 768px) {
   .googly-eye--left {
-    width: 52px;
-    height: 52px;
+    width: 72px;
+    height: 72px;
     top: 22%;
-    left: calc(50% - 44px);
+    left: calc(50% - 86px);
   }
   .googly-eye--right {
-    width: 52px;
-    height: 52px;
+    width: 72px;
+    height: 72px;
     top: 22%;
-    left: calc(50% + 0px);
+    left: calc(50% + 20px);
   }
 }
 
