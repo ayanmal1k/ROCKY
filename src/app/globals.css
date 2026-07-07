@@ -429,14 +429,24 @@ body {
   opacity: 0.6;
 }
 
-.roadmap-video {
+.roadmap-gem-gif {
   position: relative;
   z-index: 1;
   width: clamp(220px, 24vw, 380px);
   height: auto;
   border-radius: 12px;
   object-fit: contain;
-  filter: drop-shadow(0 4px 40px rgba(0, 0, 0, 0.5));
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), filter 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  animation: gemFloat 3s ease-in-out infinite;
+}
+
+.roadmap-gem-gif:hover {
+  transform: scale(1.12) rotate(2deg);
+}
+
+@keyframes gemFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
 }
 
 /* ---- Responsive: Tablet ---- */
@@ -450,7 +460,7 @@ body {
     width: clamp(220px, 32vw, 320px);
   }
 
-  .roadmap-video {
+  .roadmap-gem-gif {
     width: clamp(220px, 34vw, 360px);
   }
 }
@@ -500,7 +510,7 @@ body {
     line-height: 1.3;
   }
 
-  .roadmap-video {
+  .roadmap-gem-gif {
     width: clamp(180px, 55vw, 280px);
   }
 
@@ -538,7 +548,7 @@ body {
     font-size: 0.65rem;
   }
 
-  .roadmap-video {
+  .roadmap-gem-gif {
     width: clamp(150px, 55vw, 220px);
   }
 }
@@ -797,6 +807,12 @@ body {
   .meme-controls-col {
     width: 100%;
     max-width: 440px;
+  }
+
+  .meme-expr-btn {
+    width: calc(33.333% - 8px);
+    padding: 8px 10px;
+    font-size: 0.85rem;
   }
 }
 

@@ -28,7 +28,7 @@ export default function Hero() {
             transition={{ type: "spring", stiffness: 120, damping: 20 }}
             className="font-sans font-black text-white text-sm sm:text-lg md:text-2xl lg:text-3xl mb-4 badge-outline tracking-wider uppercase whitespace-nowrap"
           >
-            THE HARDEST MEME ON THE INTERNET
+            THE PET ROCK OF SOLANA
           </motion.h3>
 
           {/* Main Massive Title */}

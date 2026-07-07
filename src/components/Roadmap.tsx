@@ -10,7 +10,7 @@ interface Phase {
   number: number;
   name: string;
   gemColor: string;
-  video: string;
+  gif: string;
   points: string[];
 }
 
@@ -19,7 +19,7 @@ const phases: Phase[] = [
     number: 1,
     name: "Emerald",
     gemColor: "#50C878",
-    video: "/emerald.webm",
+    gif: "/rockmap/emerald.gif",
     points: [
       "Community launch & social channels live",
       "Initial token distribution & airdrop",
@@ -28,20 +28,9 @@ const phases: Phase[] = [
   },
   {
     number: 2,
-    name: "Ruby",
-    gemColor: "#E0115F",
-    video: "/ruby.webm",
-    points: [
-      "DEX listing & liquidity pool setup",
-      "First partnerships & collaborations",
-      "Rocky NFT collection teasers",
-    ],
-  },
-  {
-    number: 3,
     name: "Sapphire",
     gemColor: "#0F52BA",
-    video: "/sapphir.webm",
+    gif: "/rockmap/sapphire.gif",
     points: [
       "NFT mint & staking platform launch",
       "CEX listing applications submitted",
@@ -49,10 +38,21 @@ const phases: Phase[] = [
     ],
   },
   {
+    number: 3,
+    name: "Ruby",
+    gemColor: "#E0115F",
+    gif: "/rockmap/ruby.gif",
+    points: [
+      "DEX listing & liquidity pool setup",
+      "First partnerships & collaborations",
+      "Rocky NFT collection teasers",
+    ],
+  },
+  {
     number: 4,
     name: "Diamond",
     gemColor: "#B9F2FF",
-    video: "/diamond.webm",
+    gif: "/rockmap/diamond.gif",
     points: [
       "Major CEX listing confirmed",
       "Cross-chain bridge deployment",
@@ -65,7 +65,6 @@ export default function Roadmap() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const panelsRef = useRef<HTMLDivElement[]>([]);
-  const videosRef = useRef<HTMLVideoElement[]>([]);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -73,7 +72,6 @@ export default function Roadmap() {
     if (!section || !track) return;
 
     const panelCount = phases.length;
-    let activeIndex = 0; // track which panel is currently active
 
     // Calculate how far to scroll horizontally
     const getScrollDistance = () => {
@@ -93,46 +91,18 @@ export default function Roadmap() {
           trigger: section,
           start: "top top",
           end: () => `+=${getScrollDistance()}`,
-          scrub: 0.3,
+          scrub: 0.1,
           pin: true,
           anticipatePin: 1,
           invalidateOnRefresh: true,
           snap: {
             snapTo: snapPoints,
-            duration: { min: 0.2, max: 0.5 },
-            delay: 0.05,
-            ease: "power2.inOut",
-          },
-          onUpdate: (self) => {
-            // Determine the active panel from scroll progress
-            const progress = self.progress;
-            const newIndex = Math.round(progress * (panelCount - 1));
-
-            if (newIndex !== activeIndex) {
-              // Pause old video
-              const oldVideo = videosRef.current[activeIndex];
-              if (oldVideo && !oldVideo.paused) {
-                oldVideo.pause();
-              }
-
-              // Play new video from the start
-              activeIndex = newIndex;
-              const newVideo = videosRef.current[activeIndex];
-              if (newVideo) {
-                newVideo.currentTime = 0;
-                newVideo.play().catch(() => { });
-              }
-            }
+            duration: { min: 0.15, max: 0.3 },
+            delay: 0,
+            ease: "power3.out",
           },
         },
       });
-
-      // Auto-play the first video on mount
-      const firstVideo = videosRef.current[0];
-      if (firstVideo) {
-        firstVideo.currentTime = 0;
-        firstVideo.play().catch(() => { });
-      }
     }, section);
 
     return () => ctx.revert();
@@ -205,7 +175,7 @@ export default function Roadmap() {
               </div>
             </div>
 
-            {/* Right — Gemstone Video (no label, no loop) */}
+            {/* Right — Gemstone GIF with glow + transform */}
             <div className="roadmap-video-wrapper">
               <div
                 className="roadmap-video-glow"
@@ -213,17 +183,14 @@ export default function Roadmap() {
                   background: `radial-gradient(circle, ${phase.gemColor}30 0%, transparent 70%)`,
                 }}
               />
-              <video
-                ref={(el) => {
-                  if (el) videosRef.current[i] = el;
+              <img
+                className="roadmap-gem-gif"
+                src={phase.gif}
+                alt={`${phase.name} gemstone`}
+                draggable={false}
+                style={{
+                  filter: `drop-shadow(0 0 25px ${phase.gemColor}88) drop-shadow(0 0 60px ${phase.gemColor}44)`,
                 }}
-                className="roadmap-video"
-                src={phase.video}
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="auto"
               />
             </div>
           </div>
