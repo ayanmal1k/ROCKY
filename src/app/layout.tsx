@@ -1,5 +1,12 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import "./globals.css";
+
+const numpty = localFont({
+  src: "../../public/numpty/Numpty DEMO.otf",
+  variable: "--font-numpty",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Rocky Token",
@@ -12,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${numpty.variable}`}>
       <body className="antialiased">{children}</body>
     </html>
   );
