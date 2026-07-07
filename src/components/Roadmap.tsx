@@ -65,85 +65,79 @@ export default function Roadmap() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const panelsRef = useRef<HTMLDivElement[]>([]);
+  const videosRef = useRef<HTMLVideoElement[]>([]);
 
   useEffect(() => {
     const section = sectionRef.current;
     const track = trackRef.current;
     if (!section || !track) return;
 
+    const panelCount = phases.length;
+    let activeIndex = 0; // track which panel is currently active
+
     // Calculate how far to scroll horizontally
-    const totalWidth = track.scrollWidth;
-    const viewportWidth = window.innerWidth;
-    const scrollDistance = totalWidth - viewportWidth;
+    const getScrollDistance = () => {
+      return track.scrollWidth - window.innerWidth;
+    };
+
+    // Build explicit snap points: [0, 0.333, 0.666, 1] for 4 panels
+    const snapPoints = Array.from({ length: panelCount }, (_, i) =>
+      i / (panelCount - 1)
+    );
 
     const ctx = gsap.context(() => {
       gsap.to(track, {
-        x: -scrollDistance,
+        x: () => -getScrollDistance(),
         ease: "none",
         scrollTrigger: {
           trigger: section,
           start: "top top",
-          end: () => `+=${scrollDistance}`,
-          scrub: 1,
+          end: () => `+=${getScrollDistance()}`,
+          scrub: 0.3,
           pin: true,
           anticipatePin: 1,
           invalidateOnRefresh: true,
+          snap: {
+            snapTo: snapPoints,
+            duration: { min: 0.2, max: 0.5 },
+            delay: 0.05,
+            ease: "power2.inOut",
+          },
+          onUpdate: (self) => {
+            // Determine the active panel from scroll progress
+            const progress = self.progress;
+            const newIndex = Math.round(progress * (panelCount - 1));
+
+            if (newIndex !== activeIndex) {
+              // Pause old video
+              const oldVideo = videosRef.current[activeIndex];
+              if (oldVideo && !oldVideo.paused) {
+                oldVideo.pause();
+              }
+
+              // Play new video from the start
+              activeIndex = newIndex;
+              const newVideo = videosRef.current[activeIndex];
+              if (newVideo) {
+                newVideo.currentTime = 0;
+                newVideo.play().catch(() => {});
+              }
+            }
+          },
         },
       });
 
-      // Animate each panel as it enters the viewport
-      panelsRef.current.forEach((panel) => {
-        if (!panel) return;
-
-        const slab = panel.querySelector(".roadmap-slab-wrapper");
-        const video = panel.querySelector(".roadmap-video-wrapper");
-
-        if (slab) {
-          gsap.fromTo(
-            slab,
-            { opacity: 0, x: -80, rotateY: 12 },
-            {
-              opacity: 1,
-              x: 0,
-              rotateY: 0,
-              duration: 1,
-              ease: "power3.out",
-              scrollTrigger: {
-                trigger: panel,
-                containerAnimation: gsap.getById?.("roadmapScroll") || undefined,
-                start: "left 80%",
-                end: "left 30%",
-                scrub: 1,
-                // Use the main horizontal scroll trigger
-              },
-            }
-          );
-        }
-
-        if (video) {
-          gsap.fromTo(
-            video,
-            { opacity: 0, scale: 0.7, rotateZ: -5 },
-            {
-              opacity: 1,
-              scale: 1,
-              rotateZ: 0,
-              duration: 1,
-              ease: "power3.out",
-              scrollTrigger: {
-                trigger: panel,
-                start: "left 80%",
-                end: "left 30%",
-                scrub: 1,
-              },
-            }
-          );
-        }
-      });
+      // Auto-play the first video on mount
+      const firstVideo = videosRef.current[0];
+      if (firstVideo) {
+        firstVideo.currentTime = 0;
+        firstVideo.play().catch(() => {});
+      }
     }, section);
 
     return () => ctx.revert();
   }, []);
+
 
   return (
     <section
@@ -211,7 +205,7 @@ export default function Roadmap() {
               </div>
             </div>
 
-            {/* Right — Gemstone Video */}
+            {/* Right — Gemstone Video (no label, no loop) */}
             <div className="roadmap-video-wrapper">
               <div
                 className="roadmap-video-glow"
@@ -220,22 +214,15 @@ export default function Roadmap() {
                 }}
               />
               <video
+                ref={(el) => {
+                  if (el) videosRef.current[i] = el;
+                }}
                 className="roadmap-video"
                 src={phase.video}
-                autoPlay
-                loop
                 muted
                 playsInline
+                preload="auto"
               />
-              <span
-                className="roadmap-gem-label font-numpty"
-                style={{
-                  color: phase.gemColor,
-                  textShadow: `0 0 18px ${phase.gemColor}66, 0 2px 0 #000`,
-                }}
-              >
-                {phase.name}
-              </span>
             </div>
           </div>
         ))}
