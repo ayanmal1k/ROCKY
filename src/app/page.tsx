@@ -1,5 +1,6 @@
 import Hero from "@/components/Hero";
 import About from "@/components/About";
+import Roadmap from "@/components/Roadmap";
 import LoadingScreen from "@/components/LoadingScreen";
 
 export default function Home() {
@@ -14,6 +15,8 @@ export default function Home() {
       <div className="h-screen" />
       {/* About scrolls over the pinned hero */}
       <About />
+      {/* Horizontal scroll roadmap */}
+      <Roadmap />
     </main>
   );
 }

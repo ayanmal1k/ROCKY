@@ -124,7 +124,8 @@ body {
 }
 
 /* On mobile/touch devices, disable the dimming entirely for perfect readability */
-@media (hover: none), (pointer: coarse) {
+@media (hover: none),
+(pointer: coarse) {
   .spotlight-text {
     background-image: none !important;
     -webkit-background-clip: initial !important;
@@ -226,6 +227,7 @@ body {
     top: 22%;
     left: calc(50% - 72px);
   }
+
   .googly-eye--right {
     width: 60px;
     height: 60px;
@@ -241,6 +243,7 @@ body {
     top: 22%;
     left: calc(50% - 86px);
   }
+
   .googly-eye--right {
     width: 72px;
     height: 72px;
@@ -259,4 +262,213 @@ body {
     1px 2px 3px rgba(0, 0, 0, 0.3);
   transition: transform 0.08s ease-out;
   will-change: transform;
+}
+
+/* ===== ROADMAP (Horizontal Scroll) ===== */
+
+.roadmap-section {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.roadmap-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('/ROCKMAP-BG.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+/* Section Title — pinned top-center */
+.roadmap-title-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  padding-top: 28px;
+  pointer-events: none;
+}
+
+.roadmap-title {
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  line-height: 1;
+}
+
+/* Horizontal track — houses all panels in a row */
+.roadmap-track {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  will-change: transform;
+  /* width set by content — each panel is 100vw */
+}
+
+/* Single panel — takes full viewport width */
+.roadmap-panel {
+  flex: 0 0 100vw;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4vw;
+  padding: 100px 6vw 40px;
+  box-sizing: border-box;
+}
+
+/* ---- Left: Stone Slab Card ---- */
+.roadmap-slab-wrapper {
+  flex: 0 0 auto;
+  perspective: 800px;
+}
+
+.roadmap-slab {
+  position: relative;
+  width: clamp(260px, 24vw, 380px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.roadmap-slab-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  pointer-events: none;
+  filter: brightness(0.92) drop-shadow(0 8px 30px rgba(0, 0, 0, 0.7));
+}
+
+/* Content overlaid on top of the slab image */
+.roadmap-slab-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 14% 10% 10%;
+}
+
+.roadmap-phase-badge {
+  font-size: clamp(0.85rem, 1.2vw, 1.1rem);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+  -webkit-text-stroke: 0.6px #000;
+}
+
+.roadmap-phase-name {
+  font-size: clamp(1.8rem, 2.8vw, 3rem);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+  margin-bottom: 16px;
+  -webkit-text-stroke: 1px #000;
+}
+
+.roadmap-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.roadmap-check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: clamp(0.7rem, 0.95vw, 0.95rem);
+  color: #e0e0e0;
+  line-height: 1.35;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+.roadmap-check-icon {
+  flex-shrink: 0;
+  color: #6edb6e;
+  font-size: 0.85em;
+  margin-top: 2px;
+  filter: drop-shadow(0 0 4px rgba(110, 219, 110, 0.5));
+}
+
+/* ---- Right: Gemstone Video ---- */
+.roadmap-video-wrapper {
+  position: relative;
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.roadmap-video-glow {
+  position: absolute;
+  width: 140%;
+  height: 140%;
+  top: -20%;
+  left: -20%;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(40px);
+  opacity: 0.6;
+}
+
+.roadmap-video {
+  position: relative;
+  z-index: 1;
+  width: clamp(260px, 30vw, 480px);
+  height: auto;
+  border-radius: 12px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 40px rgba(0, 0, 0, 0.5));
+}
+
+.roadmap-gem-label {
+  position: relative;
+  z-index: 2;
+  margin-top: 16px;
+  font-size: clamp(1.4rem, 2vw, 2rem);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  -webkit-text-stroke: 0.8px #000;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+  .roadmap-panel {
+    flex-direction: column;
+    gap: 24px;
+    padding: 90px 20px 24px;
+  }
+
+  .roadmap-slab {
+    width: clamp(200px, 55vw, 280px);
+  }
+
+  .roadmap-video {
+    width: clamp(180px, 50vw, 260px);
+  }
+
+  .roadmap-phase-name {
+    font-size: 1.6rem;
+  }
+
+  .roadmap-check-item {
+    font-size: 0.72rem;
+  }
 }
