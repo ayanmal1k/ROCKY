@@ -118,10 +118,10 @@ export default function About() {
           transition={{ type: "spring", stiffness: 90, damping: 20, delay: 0.15 }}
           className="w-full text-center mb-8"
         >
-          <p className="text-2xl sm:text-3xl md:text-4xl font-numpty leading-relaxed spotlight-text">
+          <p className="text-lg sm:text-3xl md:text-4xl font-numpty leading-relaxed spotlight-text">
             Born from the rugged depths of the blockchain, Rocky is the ultimate testament to endurance, community, and pure stoney determination. In a world full of fleeting dogs, hyperactive frogs, and transient memes that turn to dust overnight, Rocky stands solid—unmoved, unphased, and unbreakable.
           </p>
-          <p className="text-2xl sm:text-3xl md:text-4xl font-numpty leading-relaxed spotlight-text mt-6">
+          <p className="text-lg sm:text-3xl md:text-4xl font-numpty leading-relaxed spotlight-text mt-6">
             This legendary stone rolled out of the digital abyss with no promises and initially no eyes. Yet, the community saw its strength. We gathered around this silent monolith, carving our hopes, our memes, and our collective diamond hands into its surface. Trends fade, but rocks endure forever.
           </p>
         </motion.div>

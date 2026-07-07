@@ -113,14 +113,24 @@ body {
 /* Spotlight Text Effect */
 .spotlight-text {
   background-image: radial-gradient(circle 320px at var(--mouse-vp-x, -999px) var(--mouse-vp-y, -999px),
-      rgba(255, 255, 255, 0.98) 0%,
-      rgba(255, 255, 255, 0.6) 55%,
-      rgba(255, 255, 255, 0.35) 100%);
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 0.85) 55%,
+      rgba(255, 255, 255, 0.65) 100%);
   background-attachment: fixed;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   transition: background-image 0.1s ease;
+}
+
+/* On mobile/touch devices, disable the dimming entirely for perfect readability */
+@media (hover: none), (pointer: coarse) {
+  .spotlight-text {
+    background-image: none !important;
+    -webkit-background-clip: initial !important;
+    background-clip: initial !important;
+    color: rgba(255, 255, 255, 0.95) !important;
+  }
 }
 
 /* Spotlight Ambient Overlay */
@@ -145,18 +155,18 @@ body {
   justify-content: center;
   margin-top: auto;
   overflow: hidden;
-  height: 180px;
+  height: 260px;
 }
 
 @media (min-width: 640px) {
   .about-rocky-container {
-    height: 220px;
+    height: 280px;
   }
 }
 
 @media (min-width: 768px) {
   .about-rocky-container {
-    height: 280px;
+    height: 340px;
   }
 }
 
@@ -199,14 +209,14 @@ body {
   width: 50px;
   height: 50px;
   top: 22%;
-  left: calc(50% - 60px);
+  left: calc(50% - 64px);
 }
 
 .googly-eye--right {
   width: 50px;
   height: 50px;
   top: 22%;
-  left: calc(50% + 16px);
+  left: calc(50% + 18px);
 }
 
 @media (min-width: 640px) {
