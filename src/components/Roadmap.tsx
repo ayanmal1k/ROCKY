@@ -33,11 +33,8 @@ const phases: Phase[] = [
     gemColor: "#0F52BA",
     gif: "/rockmap/sapphire.gif",
     points: [
-      "NFT mint & staking platform launch",
-      "CEX listing applications submitted",
-      "Rocky DAO governance voting begins",
-      "DEX listing & liquidity pool setup",
       "First partnerships & collaborations",
+      "NEW WEBSITE LAUNCH",
     ],
   },
   {
