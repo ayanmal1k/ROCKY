@@ -1,10 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Navbar from "./Navbar";
 
 export default function Hero() {
   return (
     <div className="relative min-h-screen w-full flex flex-col justify-center items-center overflow-hidden px-4 md:px-12 pb-16 md:pb-24 select-none">
+      {/* Navbar at the top of Hero */}
+      <Navbar />
+
       {/* Responsive Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center pointer-events-none z-0 bg-[url('/mobile-hero-bg.png')] md:bg-[url('/heroo-bg.png')]"
@@ -64,7 +68,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.55 }}
             className="flex flex-wrap items-center gap-4"
           >
-            <button className="stone-btn px-6 py-2.5 text-lg md:text-xl font-bold tracking-wide min-w-[140px]">
+            <button className="stone-btn hero-buy-btn px-6 py-2.5 text-lg md:text-xl font-bold tracking-wide min-w-[140px]">
               Buy Rocky
             </button>
             <button className="stone-btn px-6 py-2.5 text-lg md:text-xl font-bold tracking-wide min-w-[140px]">
