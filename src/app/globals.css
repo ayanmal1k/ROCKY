@@ -407,6 +407,28 @@ body {
   filter: drop-shadow(0 0 4px rgba(110, 219, 110, 0.5));
 }
 
+.roadmap-coming-soon {
+  font-size: clamp(2rem, 3.2vw, 3.5rem);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 15px;
+  -webkit-text-stroke: 1.5px #000;
+  text-align: center;
+  font-weight: 900;
+  animation: roadmap-pulse-glow 2.5s infinite ease-in-out;
+}
+
+@keyframes roadmap-pulse-glow {
+  0%, 100% {
+    opacity: 0.7;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+}
+
 /* ---- Right: Gemstone Video ---- */
 .roadmap-video-wrapper {
   position: relative;

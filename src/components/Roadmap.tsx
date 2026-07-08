@@ -11,7 +11,8 @@ interface Phase {
   name: string;
   gemColor: string;
   gif: string;
-  points: string[];
+  points?: string[];
+  comingSoon?: boolean;
 }
 
 const phases: Phase[] = [
@@ -35,6 +36,8 @@ const phases: Phase[] = [
       "NFT mint & staking platform launch",
       "CEX listing applications submitted",
       "Rocky DAO governance voting begins",
+      "DEX listing & liquidity pool setup",
+      "First partnerships & collaborations",
     ],
   },
   {
@@ -42,22 +45,14 @@ const phases: Phase[] = [
     name: "Ruby",
     gemColor: "#E0115F",
     gif: "/rockmap/ruby.gif",
-    points: [
-      "DEX listing & liquidity pool setup",
-      "First partnerships & collaborations",
-      "Rocky NFT collection teasers",
-    ],
+    comingSoon: true,
   },
   {
     number: 4,
     name: "Diamond",
     gemColor: "#B9F2FF",
     gif: "/rockmap/diamond.gif",
-    points: [
-      "Major CEX listing confirmed",
-      "Cross-chain bridge deployment",
-      "Rocky metaverse experience beta",
-    ],
+    comingSoon: true,
   },
 ];
 
@@ -163,14 +158,26 @@ export default function Roadmap() {
                   >
                     {phase.name}
                   </h3>
-                  <ul className="roadmap-checklist">
-                    {phase.points.map((point, j) => (
-                      <li key={j} className="roadmap-check-item font-numpty">
-                        <span className="roadmap-check-icon">✔</span>
-                        <span>{point}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  {phase.comingSoon ? (
+                    <div
+                      className="roadmap-coming-soon font-numpty"
+                      style={{
+                        color: phase.gemColor,
+                        textShadow: `0 0 15px ${phase.gemColor}44, 0 2px 0 #000`,
+                      }}
+                    >
+                      COMING SOON
+                    </div>
+                  ) : (
+                    <ul className="roadmap-checklist">
+                      {phase.points?.map((point, j) => (
+                        <li key={j} className="roadmap-check-item font-numpty">
+                          <span className="roadmap-check-icon">✔</span>
+                          <span>{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
               </div>
             </div>
