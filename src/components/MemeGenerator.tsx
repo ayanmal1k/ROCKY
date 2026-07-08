@@ -102,7 +102,7 @@ export default function MemeGenerator() {
               <img
                 ref={imageRef}
 
-                src={`/meme/${selected}.png`}
+                src={`/meme/${selected}.avif`}
                 alt={`Rocky ${currentExpression.label}`}
                 className="meme-preview-img"
                 crossOrigin="anonymous"
