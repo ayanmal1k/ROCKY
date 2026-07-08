@@ -68,15 +68,29 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.55 }}
             className="flex flex-wrap items-center gap-4"
           >
-            <button className="stone-btn hero-buy-btn px-6 py-2.5 text-lg md:text-xl font-bold tracking-wide min-w-[140px]">
-              Buy Rocky
-            </button>
-            <button className="stone-btn px-6 py-2.5 text-lg md:text-xl font-bold tracking-wide min-w-[140px]">
-              View Rockmap
-            </button>
-            <button className="stone-btn px-6 py-2.5 text-lg md:text-xl font-bold tracking-wide min-w-[140px]">
-              Join Community
-            </button>
+            <a
+              href="https://dexscreener.com/solana/dsmwcjnovtdpdpci9vdnhfekkjmf8r458zz7bytbxnkv"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <button className="stone-btn hero-buy-btn px-6 py-2.5 text-lg md:text-xl font-bold tracking-wide min-w-[140px]">
+                Buy Rocky
+              </button>
+            </a>
+            <a href="#roadmap">
+              <button className="stone-btn px-6 py-2.5 text-lg md:text-xl font-bold tracking-wide min-w-[140px]">
+                View Rockmap
+              </button>
+            </a>
+            <a
+              href="https://t.me/RockyOnSolPortal"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <button className="stone-btn px-6 py-2.5 text-lg md:text-xl font-bold tracking-wide min-w-[140px]">
+                Join Community
+              </button>
+            </a>
           </motion.div>
 
         </div>

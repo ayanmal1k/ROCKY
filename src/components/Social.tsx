@@ -79,7 +79,7 @@ export default function Social() {
             className="flex flex-col sm:flex-row items-center gap-5 w-full sm:w-auto"
           >
             <a
-              href="https://x.com"
+              href="https://x.com/RockySolanaCoin"
               target="_blank"
               rel="noopener noreferrer"
               className="stone-btn px-8 py-3.5 text-lg md:text-xl font-bold tracking-wide min-w-[200px] flex items-center justify-center gap-3 w-full sm:w-auto"
@@ -92,7 +92,7 @@ export default function Social() {
             </a>
 
             <a
-              href="https://t.me"
+              href="https://t.me/RockyOnSolPortal"
               target="_blank"
               rel="noopener noreferrer"
               className="stone-btn px-8 py-3.5 text-lg md:text-xl font-bold tracking-wide min-w-[200px] flex items-center justify-center gap-3 w-full sm:w-auto"

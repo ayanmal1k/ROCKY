@@ -43,10 +43,19 @@ export default function Footer() {
           </div>
         </motion.div>
 
-        {/* Right Side: Circular Social Buttons (3D Bevelled Stone Look) */}
+        {/* Right Side: Buy button and Circular Social Buttons (3D Bevelled Stone Look) */}
         <div className="flex items-center gap-4">
           <a
-            href="https://x.com"
+            href="https://dexscreener.com/solana/dsmwcjnovtdpdpci9vdnhfekkjmf8r458zz7bytbxnkv"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="stone-btn px-4 py-2 text-sm sm:text-base font-bold tracking-wide mr-2"
+          >
+            Buy Rocky
+          </a>
+
+          <a
+            href="https://x.com/RockySolanaCoin"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Follow on X"
@@ -58,7 +67,7 @@ export default function Footer() {
           </a>
 
           <a
-            href="https://t.me"
+            href="https://t.me/RockyOnSolPortal"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Join Telegram"

@@ -27,23 +27,17 @@ export default function Navbar() {
           ROCKY
         </span>
       </div>
-
       {/* Action Button: Buy Rocky */}
       <div>
-        <button 
-          onClick={() => {
-            // Find the buy button in the hero and trigger its click, or navigate to buy URL
-            const buyBtn = document.querySelector('.hero-buy-btn');
-            if (buyBtn) {
-              (buyBtn as HTMLButtonElement).click();
-            } else {
-              window.open('https://raydium.io', '_blank');
-            }
-          }}
-          className="stone-btn px-5 py-1.5 md:px-6 md:py-2 text-sm sm:text-base md:text-lg font-bold tracking-wide"
+        <a
+          href="https://dexscreener.com/solana/dsmwcjnovtdpdpci9vdnhfekkjmf8r458zz7bytbxnkv"
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          Buy Rocky
-        </button>
+          <button className="stone-btn px-5 py-1.5 md:px-6 md:py-2 text-sm sm:text-base md:text-lg font-bold tracking-wide">
+            Buy Rocky
+          </button>
+        </a>
       </div>
     </motion.nav>
   );
