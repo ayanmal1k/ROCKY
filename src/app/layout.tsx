@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import Script from "next/script";
 import "./globals.css";
 import CustomCursor from "@/components/CustomCursor";
 
@@ -50,6 +51,11 @@ export default function RootLayout({
       <body className="antialiased">
         <CustomCursor />
         {children}
+        <Script
+          src="https://cdn.zanderio.ai/widget/loader.js"
+          data-id="wdg_OJSqfIxdhjBf53ocXBuaPIMk"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
